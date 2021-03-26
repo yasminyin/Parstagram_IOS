@@ -10,6 +10,7 @@ import Parse
 
 class LoginViewController: UIViewController {
 
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -17,10 +18,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
+        
+        
         if PFUser.current() != nil {
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            let feedNavigationController = main.instantiateViewController(identifier: "feedNavigationController")
+            
+            feedNavigationController.modalPresentationStyle = .fullScreen
+            present(feedNavigationController, animated: true, completion: nil)
         }
     }
     
